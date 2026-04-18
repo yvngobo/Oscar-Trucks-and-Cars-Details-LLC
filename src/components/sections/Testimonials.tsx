@@ -54,7 +54,10 @@ function ReviewCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.55, delay, ease: "easeOut" }}
-      className="bg-[var(--card)] border border-[var(--card-border)] rounded-[20px] p-6 flex flex-col gap-4"
+      whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(0,0,0,0.18)" }}
+      whileTap={{ scale: 0.98 }}
+      style={{ transition: "box-shadow 0.3s ease" }}
+      className="bg-[var(--card)] border border-[var(--card-border)] rounded-[20px] p-6 flex flex-col gap-4 cursor-default"
     >
       {/* Stars */}
       <div className="flex gap-0.5">
@@ -111,7 +114,9 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55, delay: 0.3, ease: "easeOut" }}
-          className="bg-[var(--action)] rounded-[20px] p-8 text-white flex flex-col justify-between h-full"
+          whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(220,38,38,0.25)" }}
+          whileTap={{ scale: 0.98 }}
+          className="bg-[var(--action)] rounded-[20px] p-8 text-white flex flex-col justify-between h-full cursor-default"
         >
           <div>
             <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-6">
