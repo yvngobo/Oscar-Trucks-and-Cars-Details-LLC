@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Star, ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
@@ -21,10 +20,7 @@ export function Hero() {
       <div
         aria-hidden
         className="absolute top-20 -right-40 w-[600px] h-[600px] rounded-full opacity-[0.08] blur-3xl pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, #DC2626 0%, transparent 70%)",
-        }}
+        style={{ background: "radial-gradient(circle, #DC2626 0%, transparent 70%)" }}
       />
 
       <div className="relative max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
@@ -48,11 +44,7 @@ export function Hero() {
           <div className="flex items-center gap-2 bg-[var(--card)] border border-[var(--card-border)] rounded-full px-4 py-1.5">
             <div className="flex items-center gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  size={11}
-                  className="fill-[#DC2626] text-[#DC2626]"
-                />
+                <Star key={i} size={11} className="fill-[#DC2626] text-[#DC2626]" />
               ))}
             </div>
             <span className="text-[var(--foreground)] text-xs font-semibold">
@@ -67,7 +59,7 @@ export function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mb-8 lg:mb-12"
+          className="mb-10 lg:mb-14"
         >
           <h1 className="text-[15vw] sm:text-7xl lg:text-[118px] font-black text-[var(--foreground)] leading-[0.88] tracking-[-0.04em]">
             Premium auto
@@ -77,99 +69,48 @@ export function Hero() {
           </h1>
         </motion.div>
 
-        {/* Sub-grid: text + CTAs + image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
-          {/* Left: description + CTAs */}
-          <motion.div
-            custom={2}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="lg:col-span-5"
-          >
-            <p className="text-[var(--muted-text)] text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-              We restore your vehicle to showroom condition — inside and out.
-              Trusted by Gwinnett County car owners across Grayson, GA.
-            </p>
+        {/* Description + CTAs */}
+        <motion.div
+          custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="max-w-xl"
+        >
+          <p className="text-[var(--muted-text)] text-base sm:text-lg leading-relaxed mb-8">
+            We restore your vehicle to showroom condition — inside and out.
+            Trusted by Gwinnett County car owners across Grayson, GA.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/contact"
-                className="min-h-[52px] pl-6 pr-5 py-4 bg-[var(--foreground)] hover:bg-[var(--action)] active:scale-[0.97] text-[var(--background)] font-semibold text-sm rounded-full flex items-center justify-center gap-2 transition-all duration-200 group"
-              >
-                Book Your Detail
-                <ArrowUpRight
-                  size={16}
-                  className="group-hover:rotate-45 transition-transform duration-200"
-                />
-              </Link>
-              <a
-                href="tel:4709661113"
-                className="min-h-[52px] px-6 py-4 bg-[var(--card)] hover:bg-[var(--muted-bg)] active:scale-[0.97] text-[var(--foreground)] border border-[var(--card-border)] font-semibold text-sm rounded-full flex items-center justify-center gap-2 transition-all duration-150"
-              >
-                <Phone size={15} />
-                (470) 966-1113
-              </a>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/contact"
+              className="min-h-[52px] pl-6 pr-5 py-4 bg-[var(--foreground)] hover:bg-[var(--action)] active:scale-[0.97] text-[var(--background)] font-semibold text-sm rounded-full flex items-center justify-center gap-2 transition-all duration-200 group"
+            >
+              Book Your Detail
+              <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform duration-200" />
+            </Link>
+            <a
+              href="tel:4709661113"
+              className="min-h-[52px] px-6 py-4 bg-[var(--card)] hover:bg-[var(--muted-bg)] active:scale-[0.97] text-[var(--foreground)] border border-[var(--card-border)] font-semibold text-sm rounded-full flex items-center justify-center gap-2 transition-all duration-150"
+            >
+              <Phone size={15} />
+              (470) 966-1113
+            </a>
+          </div>
+
+          {/* Info pills */}
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[var(--muted-text)] text-xs font-medium">
+            <div className="flex items-center gap-1.5">
+              <MapPin size={13} className="text-[#DC2626]" />
+              Grayson, GA 30017
             </div>
-
-            {/* Info pills */}
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[var(--muted-text)] text-xs font-medium">
-              <div className="flex items-center gap-1.5">
-                <MapPin size={13} className="text-[#DC2626]" />
-                Grayson, GA 30017
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Clock size={13} className="text-[#DC2626]" />
-                Same-day bookings
-              </div>
+            <div className="flex items-center gap-1.5">
+              <Clock size={13} className="text-[#DC2626]" />
+              Same-day bookings
             </div>
-          </motion.div>
-
-          {/* Right: feature image */}
-          <motion.div
-            custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="lg:col-span-7 relative"
-          >
-            <div className="relative aspect-[4/3] lg:aspect-[5/3.2] rounded-[28px] overflow-hidden bg-[var(--muted-bg)]">
-              <Image
-                src="/hero-feature.png"
-                alt="Luxury car being detailed at Oscar Trucks and Cars Details in Grayson GA"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/30 via-transparent to-transparent" />
-
-              {/* Floating stat card */}
-              <div className="absolute bottom-4 left-4 bg-white border border-white/20 rounded-2xl p-4 shadow-2xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#DC2626] rounded-full flex items-center justify-center shrink-0">
-                    <Star size={16} className="fill-white text-white" />
-                  </div>
-                  <div>
-                    <p className="text-[#0A0A0A] font-black text-lg leading-none">
-                      5.0
-                    </p>
-                    <p className="text-[#444444] text-[11px] font-semibold mt-0.5">
-                      29 Google Reviews
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating badge top-right */}
-              <div className="absolute top-4 right-4 bg-[#DC2626] text-white rounded-full px-4 py-2 shadow-xl">
-                <p className="font-bold text-xs tracking-wide">
-                  ✦ LICENSED & INSURED
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
