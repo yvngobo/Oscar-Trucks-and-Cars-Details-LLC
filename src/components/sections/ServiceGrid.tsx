@@ -83,8 +83,7 @@ const standardServices = [
       { label: "Small", value: "$125" },
       { label: "SUV", value: "$175" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80&auto=format&fit=crop",
+    image: "/services/wash-wax.png",
     alt: "Wash and wax car detailing service in Grayson GA",
   },
   {
