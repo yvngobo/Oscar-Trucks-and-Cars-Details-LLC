@@ -128,8 +128,7 @@ const standardServices = [
     title: "Engine Wash",
     desc: "Degreaser application, hand scrub, pressure rinse, and dressing for a clean engine bay.",
     prices: [{ label: "Flat rate", value: "$65" }],
-    image:
-      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80&auto=format&fit=crop",
+    image: "/services/engine-wash.png",
     alt: "Engine bay wash and cleaning service Grayson GA",
   },
 ];
