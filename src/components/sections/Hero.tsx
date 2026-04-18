@@ -145,19 +145,16 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/30 via-transparent to-transparent" />
 
               {/* Floating stat card */}
-              <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md border border-white rounded-2xl p-4 shadow-xl">
+              <div className="absolute bottom-4 left-4 bg-white border border-white/20 rounded-2xl p-4 shadow-2xl">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#DC2626] rounded-full flex items-center justify-center">
-                    <Star
-                      size={16}
-                      className="fill-white text-white"
-                    />
+                  <div className="w-10 h-10 bg-[#DC2626] rounded-full flex items-center justify-center shrink-0">
+                    <Star size={16} className="fill-white text-white" />
                   </div>
                   <div>
-                    <p className="text-[var(--foreground)] font-black text-lg leading-none">
+                    <p className="text-[#0A0A0A] font-black text-lg leading-none">
                       5.0
                     </p>
-                    <p className="text-[var(--muted-text)] text-[10px] font-medium">
+                    <p className="text-[#444444] text-[11px] font-semibold mt-0.5">
                       29 Google Reviews
                     </p>
                   </div>
