@@ -55,12 +55,14 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Team photo */}
             <div className="lg:col-span-7 lg:sticky lg:top-24 order-2 lg:order-1">
-              <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden bg-[var(--muted-bg)]">
+              <div className="relative aspect-[3/2] rounded-[28px] overflow-hidden bg-[var(--muted-bg)]">
                 <Image
                   src="/about-team.jpg"
                   alt="Oscar Trucks and Cars Details team in Grayson GA"
                   fill
                   className="object-cover"
+                  style={{ objectPosition: "40% center" }}
+                  quality={95}
                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 55vw"
                 />
