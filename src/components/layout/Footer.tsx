@@ -91,8 +91,11 @@ export function Footer() {
               <p className="text-white/40 text-[11px] uppercase tracking-widest font-semibold mb-1">
                 Call us
               </p>
-              <a href="tel:4709661113" className="text-white font-semibold hover:text-[var(--action)] transition-colors duration-150">
+              <a href="tel:4709661113" className="text-white font-semibold hover:text-[var(--action)] transition-colors duration-150 block">
                 (470) 966-1113
+              </a>
+              <a href="tel:6789339465" className="text-white/60 text-xs hover:text-[var(--action)] transition-colors duration-150 block mt-0.5">
+                After Hours: (678) 933-9465
               </a>
             </div>
           </div>
@@ -103,12 +106,12 @@ export function Footer() {
                 Location
               </p>
               <a
-                href="https://www.google.com/maps/search/Grayson+GA+30017"
+                href="https://www.google.com/maps/search/2202+Loganville+Hwy+Grayson+GA+30017"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white font-semibold hover:text-[var(--action)] transition-colors duration-150"
+                className="text-white font-semibold hover:text-[var(--action)] transition-colors duration-150 leading-snug block"
               >
-                Grayson, GA 30017
+                2202 Loganville Hwy<br />Grayson, GA 30017
               </a>
               <p className="text-white/40 text-xs mt-0.5">Gwinnett County</p>
             </div>

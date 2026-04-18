@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { Phone, MapPin, Clock } from "lucide-react";
+import { Phone, MapPin, Clock, Mail } from "lucide-react";
 import { FadeUp } from "@/components/ui/FadeUp";
 
 export default function ContactPage() {
@@ -57,11 +57,35 @@ export default function ContactPage() {
                       <p className="text-[var(--muted-text)] text-[11px] uppercase tracking-widest font-semibold mb-1">
                         Phone
                       </p>
+                      <div className="space-y-1">
+                        <div>
+                          <p className="text-[var(--muted-text)] text-[10px] uppercase tracking-widest">Front Office</p>
+                          <a href="tel:4709661113" className="text-[var(--foreground)] font-bold text-base tracking-tight hover:text-[#DC2626] transition-colors duration-150">
+                            (470) 966-1113
+                          </a>
+                        </div>
+                        <div>
+                          <p className="text-[var(--muted-text)] text-[10px] uppercase tracking-widest">After Hours</p>
+                          <a href="tel:6789339465" className="text-[var(--foreground)] font-bold text-base tracking-tight hover:text-[#DC2626] transition-colors duration-150">
+                            (678) 933-9465
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-[var(--muted-bg)] rounded-full flex items-center justify-center shrink-0">
+                      <Mail size={15} className="text-[#DC2626]" />
+                    </div>
+                    <div>
+                      <p className="text-[var(--muted-text)] text-[11px] uppercase tracking-widest font-semibold mb-1">
+                        Email
+                      </p>
                       <a
-                        href="tel:4709661113"
-                        className="text-[var(--foreground)] font-bold text-lg tracking-tight hover:text-[#DC2626] transition-colors duration-150"
+                        href="mailto:Oscarsdetailingdudes@gmail.com"
+                        className="text-[var(--foreground)] font-bold text-sm hover:text-[#DC2626] transition-colors duration-150 break-all"
                       >
-                        (470) 966-1113
+                        Oscarsdetailingdudes@gmail.com
                       </a>
                     </div>
                   </li>
@@ -74,12 +98,12 @@ export default function ContactPage() {
                         Location
                       </p>
                       <a
-                        href="https://www.google.com/maps/search/Grayson+GA+30017"
+                        href="https://www.google.com/maps/search/2202+Loganville+Hwy+Grayson+GA+30017"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--foreground)] font-bold hover:text-[#DC2626] transition-colors duration-150"
+                        className="text-[var(--foreground)] font-bold text-sm hover:text-[#DC2626] transition-colors duration-150 leading-snug block"
                       >
-                        Grayson, GA 30017
+                        2202 Loganville Hwy<br />Grayson, GA 30017
                       </a>
                       <p className="text-[var(--muted-text)] text-xs mt-1 leading-relaxed">
                         Mobile service across Gwinnett County
@@ -132,6 +156,32 @@ export default function ContactPage() {
             {/* Form */}
             <FadeUp delay={0.1} className="lg:col-span-8">
               <ContactForm />
+            </FadeUp>
+          </div>
+        </section>
+
+        {/* Map */}
+        <section className="pb-20 lg:pb-28">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+            <FadeUp>
+              <p className="text-[#DC2626] text-xs font-semibold uppercase tracking-widest mb-3">
+                ✦ Find Us
+              </p>
+              <p className="text-[var(--foreground)] font-bold mb-5">
+                2202 Loganville Hwy, Grayson, GA 30017
+              </p>
+              <div className="rounded-[24px] overflow-hidden border border-[var(--card-border)] h-[320px] lg:h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps?q=2202+Loganville+Hwy,+Grayson,+GA+30017&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Oscar Trucks and Cars Details location"
+                />
+              </div>
             </FadeUp>
           </div>
         </section>
