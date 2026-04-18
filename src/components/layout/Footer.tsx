@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Phone, MapPin, Clock, Mail, ArrowUpRight } from "lucide-react";
 
 /* ── Brand SVG icons ──────────────────────────────────────────────── */
 
@@ -84,7 +84,7 @@ export function Footer() {
 
       {/* Middle — contact info */}
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12 border-b border-white/8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex items-start gap-3">
             <Phone size={14} className="text-[var(--action)] mt-0.5 shrink-0" />
             <div>
@@ -114,6 +114,20 @@ export function Footer() {
                 2202 Loganville Hwy<br />Grayson, GA 30017
               </a>
               <p className="text-white/40 text-xs mt-0.5">Gwinnett County</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Mail size={14} className="text-[var(--action)] mt-0.5 shrink-0" />
+            <div>
+              <p className="text-white/40 text-[11px] uppercase tracking-widest font-semibold mb-1">
+                Email
+              </p>
+              <a
+                href="mailto:Oscarsdetailingdudes@gmail.com"
+                className="text-white font-semibold hover:text-[var(--action)] transition-colors duration-150 text-sm break-all"
+              >
+                Oscarsdetailingdudes@gmail.com
+              </a>
             </div>
           </div>
           <div className="flex items-start gap-3">
