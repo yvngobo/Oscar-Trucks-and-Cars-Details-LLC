@@ -5,6 +5,7 @@ import { useScroll, useTransform, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
+import { FacebookIcon, TikTokIcon, InstagramIcon } from "@/components/layout/Footer";
 
 export function VideoHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -161,7 +162,7 @@ export function VideoHero() {
                 <br />
                 <span className="text-[#DC2626]">the best.</span>
               </h1>
-              <div className="flex gap-2.5 mt-1">
+              <div className="flex items-center gap-2.5 mt-1 flex-wrap">
                 <Link
                   href="/contact"
                   className="group inline-flex items-center gap-1.5 min-h-[44px] pl-5 pr-4 bg-white hover:bg-[#DC2626] hover:text-white text-[#050505] font-bold text-[11px] uppercase tracking-wide rounded-full transition-all duration-200 active:scale-[0.97]"
@@ -176,6 +177,20 @@ export function VideoHero() {
                   <Phone size={12} />
                   (470) 966-1113
                 </a>
+                {/* Social icons — mobile */}
+                <div className="flex items-center gap-1.5 ml-auto">
+                  {[
+                    { Icon: FacebookIcon, href: "https://www.facebook.com/profile.php?id=100091267248312", label: "Facebook" },
+                    { Icon: TikTokIcon,   href: "https://www.tiktok.com/@oscarsdetailingdudes",            label: "TikTok" },
+                    { Icon: InstagramIcon,href: "https://www.instagram.com/oscarsdetailingdudes",          label: "Instagram" },
+                  ].map(({ Icon, href, label }) => (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                      className="w-9 h-9 flex items-center justify-center rounded-full border border-white/15 text-white/45 hover:text-white hover:border-white/35 transition-all duration-200"
+                    >
+                      <Icon size={14} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -201,6 +216,18 @@ export function VideoHero() {
                     <Phone size={11} />
                     (470) 966-1113
                   </a>
+                  {/* Social icons — desktop */}
+                  {[
+                    { Icon: FacebookIcon, href: "https://www.facebook.com/profile.php?id=100091267248312", label: "Facebook" },
+                    { Icon: TikTokIcon,   href: "https://www.tiktok.com/@oscarsdetailingdudes",            label: "TikTok" },
+                    { Icon: InstagramIcon,href: "https://www.instagram.com/oscarsdetailingdudes",          label: "Instagram" },
+                  ].map(({ Icon, href, label }) => (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                      className="w-10 h-10 flex items-center justify-center rounded-full border border-white/15 text-white/45 hover:text-white hover:border-white/35 transition-all duration-200"
+                    >
+                      <Icon size={15} />
+                    </a>
+                  ))}
                 </div>
               </div>
               <div className="text-right">
