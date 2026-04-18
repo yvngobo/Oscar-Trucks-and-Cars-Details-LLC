@@ -92,8 +92,7 @@ const standardServices = [
     title: "Interior Detailing",
     desc: "Deep shampoo of carpet, seats, and floor mats. Leather conditioning included where applicable.",
     prices: [{ label: "Starting from", value: "$175" }],
-    image:
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80&auto=format&fit=crop",
+    image: "/services/interior-detailing.png",
     alt: "Interior car detailing — carpet shampoo, seat cleaning and leather conditioning",
   },
   {
