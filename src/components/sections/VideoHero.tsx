@@ -40,17 +40,17 @@ export function VideoHero() {
   ───────────────────────────────────────────────────────────── */
   const maskStyle = {
     WebkitMaskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.08) 10%, rgba(0,0,0,0.6) 24%, black 36%, black 82%, transparent 100%)",
+      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 82%, transparent 100%)",
     maskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.08) 10%, rgba(0,0,0,0.6) 24%, black 36%, black 82%, transparent 100%)",
+      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 82%, transparent 100%)",
   } as React.CSSProperties;
 
   /* Desktop mask keeps car solid at the bottom (no bottom fade) */
   const maskStyleDesktop = {
     WebkitMaskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.08) 10%, rgba(0,0,0,0.6) 24%, black 36%, black 100%)",
+      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 100%)",
     maskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.08) 10%, rgba(0,0,0,0.6) 24%, black 36%, black 100%)",
+      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 100%)",
   } as React.CSSProperties;
 
   return (
@@ -61,7 +61,7 @@ export function VideoHero() {
         <div
           aria-hidden
           className="absolute inset-0 z-[1] flex flex-col items-center overflow-hidden pointer-events-none select-none"
-          style={{ paddingTop: "clamp(48px, 8vh, 100px)" }}
+          style={{ paddingTop: "clamp(62px, 7vh, 88px)" }}
         >
           <span
             className="font-black uppercase leading-none block"

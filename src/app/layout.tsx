@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { BackToTop } from "@/components/ui/BackToTop";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -104,7 +105,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] antialiased">
         <a href="#main-content" className="skip-link">Skip to content</a>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
