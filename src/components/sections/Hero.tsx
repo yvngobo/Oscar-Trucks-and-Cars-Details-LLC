@@ -70,10 +70,10 @@ export function Hero() {
           className="mb-8 lg:mb-12"
         >
           <h1 className="text-[15vw] sm:text-7xl lg:text-[118px] font-black text-[var(--foreground)] leading-[0.88] tracking-[-0.04em]">
-            Premium auto
+            We come to you.
             <br />
-            detailing that{" "}
-            <span className="italic font-serif text-[#DC2626]">shines.</span>
+            Your ride leaves{" "}
+            <span className="italic font-serif text-[#DC2626]">spotless.</span>
           </h1>
         </motion.div>
 
@@ -88,8 +88,9 @@ export function Hero() {
             className="lg:col-span-5"
           >
             <p className="text-[var(--muted-text)] text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-              We restore your vehicle to showroom condition — inside and out.
-              Trusted by Gwinnett County car owners across Grayson, GA.
+              Skip the drop-off. Oscar's mobile crew brings the full detail
+              experience to your driveway — cars, trucks, and fleets across
+              Grayson, GA and all of Gwinnett County.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -120,7 +121,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-1.5">
                 <Clock size={13} className="text-[#DC2626]" />
-                Same-day bookings
+                Mobile · We come to you
               </div>
             </div>
           </motion.div>
