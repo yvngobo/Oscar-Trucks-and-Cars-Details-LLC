@@ -61,9 +61,8 @@ const standardServices = [
       { label: "Small", value: "$30" },
       { label: "SUV", value: "$50" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&q=80&auto=format&fit=crop",
-    alt: "Basic exterior car wash service in Grayson GA",
+    image: "/services/basic-wash.jpg",
+    alt: "Oscar Trucks and Cars Details technician washing a vehicle — Basic Wash service in Grayson GA",
   },
   {
     id: "basic-interior",
