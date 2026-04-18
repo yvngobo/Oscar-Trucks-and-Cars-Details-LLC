@@ -30,8 +30,7 @@ const premiumServices = [
       { label: "Small / Sedan", value: "$250" },
       { label: "SUV / Truck", value: "$275" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85&auto=format&fit=crop",
+    image: "/services/super-deluxe.png",
     alt: "Super deluxe full car detailing service in Grayson GA — clay bar, buff, wax and interior",
     tag: "Most Popular",
   },
@@ -44,8 +43,7 @@ const premiumServices = [
       { label: "Fresh from dealer", value: "$700" },
       { label: "Add-on package", value: "+$200" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=85&auto=format&fit=crop",
+    image: "/services/ceramic.png",
     alt: "Ceramic coating car protection service in Gwinnett County GA — showroom gloss",
     tag: "Premium",
   },
@@ -73,8 +71,7 @@ const standardServices = [
       { label: "Small", value: "$50" },
       { label: "SUV", value: "$75" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop",
+    image: "/services/basic-wash-interior.png",
     alt: "Basic car wash and interior cleaning in Gwinnett County GA",
   },
   {
@@ -106,8 +103,7 @@ const standardServices = [
     title: "Odor Eliminator",
     desc: "Professional odor neutralization — tackles smoke, pets, mildew, and food smells at the source.",
     prices: [{ label: "Flat rate", value: "$100" }],
-    image:
-      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop",
+    image: "/services/odor-eliminator.png",
     alt: "Car odor elimination service in Grayson GA",
   },
   {
@@ -116,8 +112,7 @@ const standardServices = [
     title: "Window Tinting",
     desc: "High-quality tint films professionally installed. UV protection, privacy, and heat rejection.",
     prices: [{ label: "Range", value: "$275–$325" }],
-    image:
-      "https://images.unsplash.com/photo-1501066927591-314112b5888e?w=800&q=80&auto=format&fit=crop",
+    image: "/services/window-tinting.png",
     alt: "Window tinting service in Gwinnett County GA",
   },
   {
@@ -126,8 +121,7 @@ const standardServices = [
     title: "Headlight Restoration",
     desc: "Two-step wet sanding plus compound and polish — eliminates yellowing and hazing for clear visibility.",
     prices: [{ label: "Per pair", value: "$60" }],
-    image:
-      "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80&auto=format&fit=crop",
+    image: "/services/headlight-restoration.png",
     alt: "Headlight restoration service — before and after in Grayson GA",
   },
   {
