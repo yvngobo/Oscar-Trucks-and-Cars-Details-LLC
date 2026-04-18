@@ -105,15 +105,12 @@ export function VideoHero() {
           }}
         />
 
-        {/* ── Layer 3: Dirty car ──────────────────────────────────── */}
-        {/*
-            MOBILE  – bounded 3:2 container, car shown in full (no cropping)
-            DESKTOP – full-bleed inset-0
-        */}
+        {/* ── Layer 3: Dirty truck ─────────────────────────────────── */}
+        {/* Mobile: bounded 3:2 container | Desktop: bounded, object-contain */}
         <div
           className="absolute left-0 right-0 z-[3]
                      bottom-[158px] h-[78vw]
-                     sm:top-0 sm:bottom-0 sm:h-auto"
+                     sm:bottom-[110px] sm:h-[66vh]"
           style={maskStyle}
         >
           <Image
@@ -122,16 +119,16 @@ export function VideoHero() {
             fill
             priority
             quality={90}
-            className="object-cover object-center"
+            className="object-cover object-center sm:object-contain sm:object-bottom"
             sizes="(max-width: 640px) 180vw, 100vw"
           />
         </div>
 
-        {/* ── Layer 4: Clean car (scroll wipe) ───────────────────── */}
+        {/* ── Layer 4: Clean truck (scroll wipe) ───────────────────── */}
         <motion.div
           className="absolute left-0 right-0 z-[4]
                      bottom-[158px] h-[78vw]
-                     sm:top-0 sm:bottom-0 sm:h-auto"
+                     sm:bottom-[110px] sm:h-[66vh]"
           style={{ clipPath: cleanClipPath, ...maskStyle }}
         >
           <Image
@@ -140,24 +137,25 @@ export function VideoHero() {
             fill
             priority
             quality={90}
-            className="object-cover object-center"
+            className="object-cover object-center sm:object-contain sm:object-bottom"
             sizes="(max-width: 640px) 180vw, 100vw"
           />
         </motion.div>
 
         {/* ── Layer 5: Wipe divider ───────────────────────────────── */}
         <motion.div
-          className="absolute top-0 bottom-0 z-[5] w-px pointer-events-none"
+          className="absolute z-[5] w-px pointer-events-none
+                     bottom-[158px] h-[78vw]
+                     sm:bottom-[110px] sm:h-[66vh]"
           style={{ left: dividerLeft }}
         >
           <div className="w-full h-full bg-white/85 shadow-[0_0_16px_4px_rgba(255,255,255,0.45),0_0_40px_8px_rgba(220,38,38,0.25)]" />
         </motion.div>
 
         {/* ── Before / After badges ───────────────────────────────── */}
-        {/* Mobile: sit within the car container. Desktop: above info strip */}
         <motion.div
           className="absolute z-[6] left-4 sm:left-10
-                     bottom-[248px] sm:bottom-[108px]"
+                     bottom-[248px] sm:bottom-[200px]"
           style={{ opacity: beforeOpacity }}
         >
           <span className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-white/15 rounded-full px-3 py-1.5 text-white/65 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -166,7 +164,7 @@ export function VideoHero() {
         </motion.div>
         <motion.div
           className="absolute z-[6] right-4 sm:right-10
-                     bottom-[248px] sm:bottom-[108px]"
+                     bottom-[248px] sm:bottom-[200px]"
           style={{ opacity: afterOpacity }}
         >
           <span className="inline-flex items-center bg-[#DC2626] rounded-full px-3 py-1.5 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] shadow-[0_0_16px_rgba(220,38,38,0.5)]">
