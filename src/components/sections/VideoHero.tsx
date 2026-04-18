@@ -60,35 +60,35 @@ export function VideoHero() {
         {/* ── Layer 1: Business name background text ──────────────── */}
         <div
           aria-hidden
-          className="absolute inset-0 z-[1] flex flex-col items-center overflow-hidden pointer-events-none select-none"
-          style={{ paddingTop: "clamp(62px, 7vh, 88px)" }}
+          className="absolute inset-0 z-[1] flex flex-col items-center pointer-events-none select-none overflow-hidden"
+          style={{ paddingTop: "clamp(72px, 8vh, 96px)" }}
         >
           <span
-            className="font-black uppercase leading-none block"
+            className="font-black uppercase leading-none block whitespace-nowrap"
             style={{
-              fontSize: "clamp(52px, 13.5vw, 220px)",
+              fontSize: "clamp(48px, 12vw, 196px)",
               letterSpacing: "-0.04em",
-              color: "rgba(255,255,255,0.42)",
+              color: "rgba(255,255,255,0.44)",
             }}
           >
             OSCAR
           </span>
           <span
-            className="font-black uppercase leading-none block"
+            className="font-black uppercase leading-none block whitespace-nowrap"
             style={{
-              fontSize: "clamp(26px, 6.8vw, 114px)",
+              fontSize: "clamp(24px, 6.1vw, 102px)",
               letterSpacing: "-0.03em",
-              color: "rgba(255,255,255,0.34)",
+              color: "rgba(255,255,255,0.36)",
             }}
           >
             TRUCKS &amp; CARS
           </span>
           <span
-            className="font-black uppercase leading-none block"
+            className="font-black uppercase leading-none block whitespace-nowrap"
             style={{
-              fontSize: "clamp(20px, 5.2vw, 88px)",
+              fontSize: "clamp(18px, 4.7vw, 80px)",
               letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.28)",
+              color: "rgba(255,255,255,0.30)",
             }}
           >
             DETAILS LLC

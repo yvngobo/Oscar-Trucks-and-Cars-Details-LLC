@@ -20,7 +20,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -28,169 +28,181 @@ export function Navbar() {
   // Close menu on route change
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
+  // Lock body scroll while mobile overlay is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
   return (
-    <motion.header
-      className="fixed top-3 left-3 right-3 md:left-4 md:right-4 z-50 rounded-full"
-      animate={{
-        backgroundColor: scrolled
-          ? "rgba(10,10,10,0.92)"
-          : "rgba(10,10,10,0.45)",
-        borderColor: scrolled
-          ? "rgba(45,45,45,1)"
-          : "rgba(45,45,45,0.4)",
-        boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.18)" : "none",
-      }}
-      style={{
-        borderWidth: 1,
-        borderStyle: "solid",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-      }}
-    >
-      <nav className="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between relative">
+    <>
+      {/* ── Navbar bar ──────────────────────────────────────── */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300"
+        style={{
+          backgroundColor: scrolled ? "rgba(6,6,6,0.92)" : "transparent",
+          borderBottom: scrolled
+            ? "1px solid rgba(255,255,255,0.06)"
+            : "1px solid transparent",
+          backdropFilter: scrolled ? "blur(24px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
+        }}
+      >
+        <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-[68px] flex items-center justify-between relative">
 
-        {/* Logo — always visible */}
-        <Link href="/" className="flex items-center gap-2.5 group z-10 shrink-0">
-          <Image
-            src="/oscar-logo.jpg"
-            alt="Oscar Trucks and Cars Details LLC"
-            width={52}
-            height={42}
-            className="rounded-lg object-contain"
-            priority
-          />
-          <AnimatePresence>
-            {!scrolled && (
-              <motion.span
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.2 }}
-                className="text-white font-bold text-sm tracking-tight hidden sm:block overflow-hidden whitespace-nowrap"
-              >
-                Oscar Trucks &amp; Cars Details
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </Link>
+          {/* Logo — always visible */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 z-10">
+            <Image
+              src="/oscar-logo.jpg"
+              alt="Oscar Trucks and Cars Details LLC"
+              width={44}
+              height={36}
+              className="rounded-lg object-contain"
+              priority
+            />
+            <span className="text-white font-bold text-[13px] tracking-tight hidden sm:block whitespace-nowrap">
+              Oscar Trucks &amp; Cars Details
+            </span>
+          </Link>
 
-        {/* Desktop nav links — hidden when scrolled */}
-        <AnimatePresence>
-          {!scrolled && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2"
-            >
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-150 ${
-                      isActive
-                        ? "text-white bg-white/10 font-semibold"
-                        : "text-white/60 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Right side */}
-        <div className="flex items-center gap-2 z-10">
-
-          {/* Desktop CTA — hidden when scrolled */}
-          <AnimatePresence>
-            {!scrolled && (
-              <motion.div
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.2 }}
-                className="hidden md:flex items-center gap-2 overflow-hidden"
-              >
-                <a
-                  href="tel:4709661113"
-                  className="text-xs font-semibold text-white/50 hover:text-[#DC2626] transition-colors duration-150 flex items-center gap-1.5 whitespace-nowrap"
-                >
-                  <Phone size={12} />
-                  (470) 966-1113
-                </a>
+          {/* ── Desktop: centered nav links — always visible ──────── */}
+          <div className="hidden md:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
                 <Link
-                  href="/contact"
-                  className="min-h-[40px] pl-5 pr-4 py-2 bg-white hover:bg-[#DC2626] text-[#0A0A0A] hover:text-white text-xs font-semibold rounded-full transition-colors duration-200 flex items-center gap-1.5 group/btn whitespace-nowrap"
+                  key={link.href}
+                  href={link.href}
+                  className={`px-4 py-2 text-[13px] font-medium rounded-full transition-all duration-150 ${
+                    isActive
+                      ? "text-white bg-white/10 font-semibold"
+                      : "text-white/55 hover:text-white hover:bg-white/8"
+                  }`}
                 >
-                  Book Now
-                  <ArrowUpRight size={13} className="group-hover/btn:rotate-45 transition-transform duration-200" />
+                  {link.label}
                 </Link>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              );
+            })}
+          </div>
 
-          {/* Hamburger — always visible on mobile, visible on desktop when scrolled */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`min-h-[40px] min-w-[40px] flex items-center justify-center text-white rounded-full hover:bg-white/10 transition-colors duration-150 ${
-              !scrolled ? "md:hidden" : ""
-            }`}
-            aria-label="Toggle menu"
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <X size={20} />
-                </motion.span>
-              ) : (
-                <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <Menu size={20} />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-        </div>
-      </nav>
+          {/* Right side */}
+          <div className="flex items-center gap-2 z-10">
 
-      {/* Dropdown menu — opens from hamburger */}
+            {/* Desktop CTA — always visible */}
+            <div className="hidden md:flex items-center gap-3">
+              <a
+                href="tel:4709661113"
+                className="text-[12px] font-medium text-white/40 hover:text-white/75 transition-colors duration-150 flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <Phone size={11} />
+                (470) 966-1113
+              </a>
+              <Link
+                href="/contact"
+                className="min-h-[36px] pl-5 pr-4 py-1.5 bg-white hover:bg-[#DC2626] text-[#0A0A0A] hover:text-white text-[12px] font-bold rounded-full transition-colors duration-200 flex items-center gap-1 group/btn whitespace-nowrap"
+              >
+                Book Now
+                <ArrowUpRight size={12} className="group-hover/btn:rotate-45 transition-transform duration-200" />
+              </Link>
+            </div>
+
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setIsOpen(true)}
+              className="md:hidden w-10 h-10 flex items-center justify-center text-white/75 hover:text-white rounded-full hover:bg-white/8 transition-colors duration-150"
+              aria-label="Open menu"
+            >
+              <Menu size={22} />
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* ── Mobile full-screen overlay ───────────────────────── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.22 }}
-            className="overflow-hidden"
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-[100] md:hidden flex flex-col"
+            style={{
+              backgroundColor: "rgba(4,4,4,0.97)",
+              backdropFilter: "blur(32px)",
+              WebkitBackdropFilter: "blur(32px)",
+            }}
           >
-            <div className="px-4 pb-4 pt-2 flex flex-col gap-1">
-              {navLinks.map((link) => {
+            {/* Overlay top bar */}
+            <div className="flex items-center justify-between px-5 h-[68px] shrink-0 border-b border-white/5">
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2.5"
+              >
+                <Image
+                  src="/oscar-logo.jpg"
+                  alt="Oscar Trucks and Cars Details LLC"
+                  width={40}
+                  height={32}
+                  className="rounded-lg object-contain"
+                />
+              </Link>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 flex items-center justify-center text-white/40 hover:text-white transition-colors rounded-full hover:bg-white/8"
+                aria-label="Close menu"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            {/* Nav links — left-aligned, large & bold */}
+            <div className="flex-1 flex flex-col justify-center px-8 gap-0 pb-10">
+              {navLinks.map((link, i) => {
                 const isActive = pathname === link.href;
                 return (
-                  <Link
+                  <motion.div
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`px-4 py-3 text-base font-medium rounded-2xl transition-colors duration-150 ${
-                      isActive
-                        ? "text-white bg-white/10 font-semibold"
-                        : "text-white/70 hover:text-white hover:bg-white/10"
-                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.055, duration: 0.26, ease: "easeOut" }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-3 text-[44px] font-black uppercase leading-tight tracking-[-0.03em] transition-colors duration-100 ${
+                        isActive
+                          ? "text-[#DC2626]"
+                          : "text-white hover:text-white/70"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 );
               })}
-              <div className="mt-2 flex flex-col gap-2">
+
+              {/* Red rule */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ delay: 0.27, duration: 0.28, ease: "easeOut" }}
+                className="origin-left w-8 h-[2px] bg-[#DC2626] mt-6 mb-6"
+              />
+
+              {/* Bottom CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.31, duration: 0.26 }}
+                className="flex flex-col gap-2.5"
+              >
                 <a
                   href="tel:4709661113"
                   onClick={() => setIsOpen(false)}
-                  className="min-h-[48px] px-5 py-3 border border-white/20 hover:border-white/40 text-white/70 hover:text-white text-sm font-medium rounded-full flex items-center justify-center gap-2 transition-colors duration-150"
+                  className="min-h-[52px] px-6 border border-white/12 text-white/50 text-[13px] font-medium rounded-xl flex items-center gap-2 hover:border-white/25 hover:text-white/75 transition-all"
                 >
                   <Phone size={14} />
                   (470) 966-1113
@@ -198,15 +210,15 @@ export function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="min-h-[48px] px-5 py-3 bg-white hover:bg-[#DC2626] hover:text-white text-[#0A0A0A] text-sm font-semibold rounded-full flex items-center justify-center gap-2 transition-colors duration-150"
+                  className="min-h-[52px] px-6 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[13px] font-bold rounded-xl flex items-center gap-2 justify-center transition-colors shadow-[0_4px_24px_rgba(220,38,38,0.3)]"
                 >
-                  Book Now <ArrowUpRight size={14} />
+                  Book your detail <ArrowUpRight size={14} />
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
