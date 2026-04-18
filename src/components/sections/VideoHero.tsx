@@ -31,7 +31,7 @@ export function VideoHero() {
   const dividerLeft = useTransform(scrollYProgress, [0.1, 0.85], ["0%", "100%"]);
   const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Simple mask: subtle top fade into black, solid through middle, fades at bottom into info strip
+  // Mobile: fades bottom into info strip. Desktop: subtle top + bottom fade.
   const maskStyle = {
     WebkitMaskImage:
       "linear-gradient(to bottom, transparent 0%, black 12%, black 76%, transparent 100%)",
@@ -43,19 +43,61 @@ export function VideoHero() {
     <div ref={containerRef} className="relative h-[280vh]">
       <section className="sticky top-0 h-[100dvh] overflow-hidden bg-[#050505]">
 
+        {/* ── Mobile-only background text ─────────────────────────── */}
+        <div
+          aria-hidden
+          className="sm:hidden absolute inset-0 z-[1] flex flex-col items-center pointer-events-none select-none overflow-hidden"
+          style={{ paddingTop: "clamp(68px, 9vh, 90px)" }}
+        >
+          <span
+            className="font-black uppercase leading-none block whitespace-nowrap"
+            style={{
+              fontSize: "clamp(48px, 12vw, 72px)",
+              letterSpacing: "-0.04em",
+              color: "rgba(255,255,255,0.44)",
+            }}
+          >
+            OSCAR
+          </span>
+          <span
+            className="font-black uppercase leading-none block whitespace-nowrap"
+            style={{
+              fontSize: "clamp(24px, 6.2vw, 38px)",
+              letterSpacing: "-0.03em",
+              color: "rgba(255,255,255,0.36)",
+            }}
+          >
+            TRUCKS &amp; CARS
+          </span>
+          <span
+            className="font-black uppercase leading-none block whitespace-nowrap"
+            style={{
+              fontSize: "clamp(18px, 4.8vw, 30px)",
+              letterSpacing: "-0.02em",
+              color: "rgba(255,255,255,0.28)",
+            }}
+          >
+            DETAILS LLC
+          </span>
+        </div>
+
         {/* ── Warm glow ───────────────────────────────────────────── */}
         <div
           aria-hidden
-          className="absolute inset-0 z-[1] pointer-events-none"
+          className="absolute inset-0 z-[1] pointer-events-none sm:z-[1]"
           style={{
             background:
               "radial-gradient(ellipse 80% 50% at 50% 80%, rgba(110,18,18,0.45) 0%, transparent 70%)",
           }}
         />
 
-        {/* ── Dirty truck (full-bleed) ─────────────────────────────── */}
+        {/* ── Dirty truck ──────────────────────────────────────────── */}
+        {/* Mobile: bounded proportional container so landscape image isn't stretched  */}
+        {/* Desktop: full-bleed inset-0                                               */}
         <div
-          className="absolute inset-0 z-[2]"
+          className="absolute left-0 right-0 z-[2]
+                     bottom-[158px] h-[78vw]
+                     sm:top-0 sm:bottom-0 sm:h-auto"
           style={maskStyle}
         >
           <Image
@@ -65,13 +107,15 @@ export function VideoHero() {
             priority
             quality={90}
             className="object-cover object-center"
-            sizes="100vw"
+            sizes="(max-width: 640px) 180vw, 100vw"
           />
         </div>
 
         {/* ── Clean truck — scroll wipe ────────────────────────────── */}
         <motion.div
-          className="absolute inset-0 z-[3]"
+          className="absolute left-0 right-0 z-[3]
+                     bottom-[158px] h-[78vw]
+                     sm:top-0 sm:bottom-0 sm:h-auto"
           style={{ clipPath: cleanClipPath, ...maskStyle }}
         >
           <Image
@@ -81,7 +125,7 @@ export function VideoHero() {
             priority
             quality={90}
             className="object-cover object-center"
-            sizes="100vw"
+            sizes="(max-width: 640px) 180vw, 100vw"
           />
         </motion.div>
 
