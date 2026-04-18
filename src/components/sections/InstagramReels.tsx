@@ -17,12 +17,12 @@ function InstagramIcon({ size = 15 }: { size?: number }) {
 }
 
 const reels = [
-  { id: 1, src: "/reels/reel1.mp4", label: "Detailing in action" },
-  { id: 2, src: "/reels/reel2.mp4", label: "Full detail service" },
-  { id: 3, src: "/reels/reel3.mp4", label: "Showroom finish" },
+  { id: 1, src: "/reels/reel1.mp4", poster: "/reels/poster1.jpg", label: "Detailing in action" },
+  { id: 2, src: "/reels/reel2.mp4", poster: "/reels/poster2.jpg", label: "Full detail service" },
+  { id: 3, src: "/reels/reel3.mp4", poster: "/reels/poster3.jpg", label: "Showroom finish" },
 ];
 
-function ReelCard({ reel }: { reel: typeof reels[number] }) {
+function ReelCard({ reel }: { reel: (typeof reels)[number] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -69,10 +69,11 @@ function ReelCard({ reel }: { reel: typeof reels[number] }) {
         <video
           ref={videoRef}
           src={reel.src}
+          poster={reel.poster}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
