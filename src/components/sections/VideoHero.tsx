@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { useScroll, useTransform, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
@@ -9,10 +9,23 @@ import { ArrowUpRight, Phone } from "lucide-react";
 export function VideoHero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  // Manual scroll tracker — more reliable than useScroll({target}) on iOS Safari
+  const scrollYProgress = useMotionValue(0);
+  const { scrollY } = useScroll();
+
+  useEffect(() => {
+    const update = (y: number) => {
+      const el = containerRef.current;
+      if (!el) return;
+      const top = el.offsetTop;
+      const totalDistance = el.offsetHeight - window.innerHeight;
+      if (totalDistance <= 0) return;
+      scrollYProgress.set(Math.min(1, Math.max(0, (y - top) / totalDistance)));
+    };
+    // Run once on mount then track changes
+    update(window.scrollY ?? 0);
+    return scrollY.on("change", update);
+  }, [scrollY, scrollYProgress]);
 
   const wipePercent = useTransform(scrollYProgress, [0.1, 0.85], [100, 0]);
   const cleanClipPath = useTransform(wipePercent, (v) => `inset(0 ${v}% 0 0)`);
