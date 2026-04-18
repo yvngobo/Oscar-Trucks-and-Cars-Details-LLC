@@ -36,7 +36,13 @@ export default function HomePage() {
                     {i > 0 && (
                       <span className="w-1 h-1 bg-[var(--card-border)] rounded-full" />
                     )}
-                    <span className="text-xs font-semibold tracking-wide uppercase">
+                    <span
+                      className="text-xs font-semibold tracking-wide uppercase text-[#DC2626]"
+                      style={{
+                        textShadow:
+                          "0 0 6px rgba(220,38,38,0.9), 0 0 14px rgba(220,38,38,0.6), 0 0 30px rgba(220,38,38,0.35)",
+                      }}
+                    >
                       {item}
                     </span>
                   </div>
