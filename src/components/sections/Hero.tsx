@@ -135,7 +135,7 @@ export function Hero() {
           >
             <div className="relative aspect-[4/3] lg:aspect-[5/3.2] rounded-[28px] overflow-hidden bg-[var(--muted-bg)]">
               <Image
-                src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=1600&q=85&auto=format&fit=crop"
+                src="/hero-feature.png"
                 alt="Luxury car being detailed at Oscar Trucks and Cars Details in Grayson GA"
                 fill
                 priority
