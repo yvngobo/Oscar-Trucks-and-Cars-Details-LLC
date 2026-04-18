@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Gallery } from "@/components/sections/Gallery";
+import { InstagramReels } from "@/components/sections/InstagramReels";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { ArrowUpRight, Phone } from "lucide-react";
 
@@ -95,6 +96,9 @@ export default function HomePage() {
             <Gallery />
           </div>
         </section>
+
+        {/* Instagram Reels */}
+        <InstagramReels />
 
         {/* Testimonials */}
         <section className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 py-20 lg:py-28">

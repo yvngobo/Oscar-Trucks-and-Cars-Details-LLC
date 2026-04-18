@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ArrowUpRight, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -18,12 +19,10 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -96,15 +95,13 @@ export function Navbar() {
             (470) 966-1113
           </a>
           {/* Theme toggle */}
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full border border-[var(--card-border)] hover:bg-[var(--muted-bg)] text-[var(--foreground)] transition-colors duration-200"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
-          )}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full border border-[var(--card-border)] hover:bg-[var(--muted-bg)] text-[var(--foreground)] transition-colors duration-200"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
           <Link
             href="/contact"
             className="min-h-[40px] pl-5 pr-4 py-2 bg-[var(--foreground)] hover:bg-[#DC2626] text-[var(--background)] text-xs font-semibold rounded-full transition-colors duration-200 flex items-center gap-1.5 group"
@@ -119,15 +116,13 @@ export function Navbar() {
 
         {/* Mobile: theme toggle + click-to-call + hamburger */}
         <div className="flex md:hidden items-center gap-2 z-10">
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full border border-[var(--card-border)] hover:bg-[var(--muted-bg)] text-[var(--foreground)] transition-colors duration-200"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
-          )}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full border border-[var(--card-border)] hover:bg-[var(--muted-bg)] text-[var(--foreground)] transition-colors duration-200"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
           <a
             href="tel:4709661113"
             className="min-h-[40px] px-3 py-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-semibold rounded-full flex items-center gap-1.5 transition-colors duration-150"
