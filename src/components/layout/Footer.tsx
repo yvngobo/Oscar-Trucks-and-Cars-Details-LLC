@@ -66,9 +66,14 @@ export function Footer() {
               height={72}
               className="rounded-xl object-contain mb-1"
             />
-            <h2 className="text-[14vw] lg:text-[160px] font-black leading-[0.82] tracking-[-0.04em] text-white">
-              Oscar<span className="text-[var(--action)]">.</span>
-            </h2>
+            <div>
+              <h2 className="text-[7vw] lg:text-[72px] font-extrabold leading-[0.9] tracking-[-0.03em] text-white">
+                Oscar<span className="text-[var(--action)]">.</span>
+              </h2>
+              <p className="text-white/45 text-sm font-medium mt-1.5 tracking-wide">
+                Trucks &amp; Cars Details LLC
+              </p>
+            </div>
           </div>
           <div className="lg:pb-3 shrink-0">
             <Link
