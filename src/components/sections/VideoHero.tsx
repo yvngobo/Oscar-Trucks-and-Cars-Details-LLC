@@ -152,15 +152,15 @@ export function VideoHero() {
             {/* Mobile */}
             <div className="sm:hidden flex flex-col gap-2.5">
               <p className="text-[#DC2626] text-[8px] font-bold uppercase tracking-[0.22em]">
-                ✦ Grayson, GA · Gwinnett County
+                ✦ Interior &amp; Exterior Restoration
               </p>
               <h1
                 className="font-black uppercase text-white leading-[0.88] tracking-[-0.03em]"
                 style={{ fontSize: "clamp(24px, 7vw, 38px)" }}
               >
-                Your car deserves
+                Restore your ride.
                 <br />
-                <span className="text-[#DC2626]">the best.</span>
+                <span className="text-[#DC2626]">Protect your investment.</span>
               </h1>
               <div className="flex items-center gap-2.5 mt-1 flex-wrap">
                 <Link
@@ -198,8 +198,8 @@ export function VideoHero() {
             <div className="hidden sm:flex items-end justify-between gap-6">
               <div className="max-w-[280px]">
                 <p className="text-white/40 text-xs leading-relaxed mb-4">
-                  Mobile auto detailing for cars, trucks &amp; fleets across
-                  Grayson, GA and Gwinnett County.
+                  We restore your vehicle to its original purchase condition —
+                  inside and out. Serving Grayson, GA &amp; Gwinnett County.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <Link
@@ -232,15 +232,15 @@ export function VideoHero() {
               </div>
               <div className="text-right">
                 <p className="text-[#DC2626] text-[9px] font-bold uppercase tracking-[0.22em] mb-2">
-                  ✦ Grayson, GA · Gwinnett County
+                  ✦ Interior &amp; Exterior Restoration
                 </p>
                 <h1
                   className="font-black uppercase text-white leading-[0.88] tracking-[-0.03em]"
                   style={{ fontSize: "clamp(22px, 3.2vw, 48px)" }}
                 >
-                  Your car deserves
+                  Restore your ride.
                   <br />
-                  <span className="text-[#DC2626]">the best.</span>
+                  <span className="text-[#DC2626]">Protect your investment.</span>
                 </h1>
               </div>
             </div>
