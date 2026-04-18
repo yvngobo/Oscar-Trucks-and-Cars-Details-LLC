@@ -135,10 +135,11 @@ export default function AboutPage() {
           <div className="text-center mb-14 max-w-lg mx-auto">
             <FadeUp>
               <p className="text-[#DC2626] text-xs font-semibold uppercase tracking-widest mb-3">
-                ✦ Why Choose Us
+                ✦ Why Oscar
               </p>
               <h2 className="text-5xl lg:text-6xl font-black text-[var(--foreground)] leading-[0.95] tracking-[-0.035em]">
-                The Oscar difference.
+                We treat every car like it&apos;s our{" "}
+                <span className="italic font-serif text-[#DC2626]">own.</span>
               </h2>
             </FadeUp>
           </div>
