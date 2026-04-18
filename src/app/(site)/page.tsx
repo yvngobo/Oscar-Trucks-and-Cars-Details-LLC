@@ -5,7 +5,6 @@ import { VideoHero } from "@/components/sections/VideoHero";
 import { Hero } from "@/components/sections/Hero";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { Gallery } from "@/components/sections/Gallery";
 import { InstagramReels } from "@/components/sections/InstagramReels";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { ArrowUpRight, Phone } from "lucide-react";
@@ -78,26 +77,7 @@ export default function HomePage() {
           <ServiceGrid />
         </section>
 
-        {/* Before/After Gallery */}
-        <section className="bg-[var(--muted-bg)] border-y border-[var(--card-border)]">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 py-20 lg:py-28">
-            <FadeUp className="text-center mb-12 max-w-xl mx-auto">
-              <p className="text-[#DC2626] text-xs font-semibold uppercase tracking-widest mb-3">
-                ✦ Our Work
-              </p>
-              <h2 className="text-5xl lg:text-6xl font-black text-[var(--foreground)] leading-[0.95] tracking-[-0.035em] mb-4">
-                Before &amp; after.
-              </h2>
-              <p className="text-[var(--muted-text)] text-sm">
-                Real results from real vehicles we&apos;ve detailed across
-                Grayson, GA and Gwinnett County.
-              </p>
-            </FadeUp>
-            <Gallery />
-          </div>
-        </section>
-
-        {/* Instagram Reels */}
+{/* Instagram Reels */}
         <InstagramReels />
 
         {/* Testimonials */}
