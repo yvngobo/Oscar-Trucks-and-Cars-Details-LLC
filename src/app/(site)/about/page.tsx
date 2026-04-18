@@ -57,7 +57,7 @@ export default function AboutPage() {
             <div className="lg:col-span-7 lg:sticky lg:top-24 order-2 lg:order-1">
               <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden bg-[var(--muted-bg)]">
                 <Image
-                  src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=85&auto=format&fit=crop"
+                  src="/about-team.jpg"
                   alt="Oscar Trucks and Cars Details team in Grayson GA"
                   fill
                   className="object-cover"
