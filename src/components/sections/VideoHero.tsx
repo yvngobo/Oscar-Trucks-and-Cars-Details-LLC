@@ -22,7 +22,6 @@ export function VideoHero() {
       if (totalDistance <= 0) return;
       scrollYProgress.set(Math.min(1, Math.max(0, (y - top) / totalDistance)));
     };
-    // Run once on mount then track changes
     update(window.scrollY ?? 0);
     return scrollY.on("change", update);
   }, [scrollY, scrollYProgress]);
@@ -30,155 +29,77 @@ export function VideoHero() {
   const wipePercent = useTransform(scrollYProgress, [0.1, 0.85], [100, 0]);
   const cleanClipPath = useTransform(wipePercent, (v) => `inset(0 ${v}% 0 0)`);
   const dividerLeft = useTransform(scrollYProgress, [0.1, 0.85], ["0%", "100%"]);
-  const beforeOpacity = useTransform(scrollYProgress, [0.4, 0.65], [1, 0]);
-  const afterOpacity  = useTransform(scrollYProgress, [0.18, 0.42], [0, 1]);
   const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  /* ─────────────────────────────────────────────────────────────
-     Car-container shared mask: fades top edge so OSCAR DETAILING
-     text shows through behind, and bottom edge into the info strip.
-  ───────────────────────────────────────────────────────────── */
+  // Simple mask: subtle top fade into black, solid through middle, fades at bottom into info strip
   const maskStyle = {
     WebkitMaskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 82%, transparent 100%)",
+      "linear-gradient(to bottom, transparent 0%, black 12%, black 76%, transparent 100%)",
     maskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 82%, transparent 100%)",
-  } as React.CSSProperties;
-
-  /* Desktop mask keeps car solid at the bottom (no bottom fade) */
-  const maskStyleDesktop = {
-    WebkitMaskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 100%)",
-    maskImage:
-      "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.45) 22%, black 46%, black 100%)",
+      "linear-gradient(to bottom, transparent 0%, black 12%, black 76%, transparent 100%)",
   } as React.CSSProperties;
 
   return (
     <div ref={containerRef} className="relative h-[280vh]">
       <section className="sticky top-0 h-[100dvh] overflow-hidden bg-[#050505]">
 
-        {/* ── Layer 1: Business name background text ──────────────── */}
+        {/* ── Warm glow ───────────────────────────────────────────── */}
         <div
           aria-hidden
-          className="absolute inset-0 z-[1] flex flex-col items-center pointer-events-none select-none overflow-hidden"
-          style={{ paddingTop: "clamp(72px, 8vh, 96px)" }}
-        >
-          <span
-            className="font-black uppercase leading-none block whitespace-nowrap"
-            style={{
-              fontSize: "clamp(48px, 12vw, 196px)",
-              letterSpacing: "-0.04em",
-              color: "rgba(255,255,255,0.44)",
-            }}
-          >
-            OSCAR
-          </span>
-          <span
-            className="font-black uppercase leading-none block whitespace-nowrap"
-            style={{
-              fontSize: "clamp(24px, 6.1vw, 102px)",
-              letterSpacing: "-0.03em",
-              color: "rgba(255,255,255,0.36)",
-            }}
-          >
-            TRUCKS &amp; CARS
-          </span>
-          <span
-            className="font-black uppercase leading-none block whitespace-nowrap"
-            style={{
-              fontSize: "clamp(18px, 4.7vw, 80px)",
-              letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.30)",
-            }}
-          >
-            DETAILS LLC
-          </span>
-        </div>
-
-        {/* ── Layer 2: Warm glow ──────────────────────────────────── */}
-        <div
-          aria-hidden
-          className="absolute inset-0 z-[2] pointer-events-none"
+          className="absolute inset-0 z-[1] pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 80% 50% at 50% 80%, rgba(110,18,18,0.55) 0%, transparent 70%)",
+              "radial-gradient(ellipse 80% 50% at 50% 80%, rgba(110,18,18,0.45) 0%, transparent 70%)",
           }}
         />
 
-        {/* ── Layer 3: Dirty truck ─────────────────────────────────── */}
-        {/* Mobile: bounded 3:2 container | Desktop: bounded, object-contain */}
+        {/* ── Dirty truck (full-bleed) ─────────────────────────────── */}
         <div
-          className="absolute left-0 right-0 z-[3]
-                     bottom-[158px] h-[78vw]
-                     sm:bottom-[110px] sm:h-[66vh]"
+          className="absolute inset-0 z-[2]"
           style={maskStyle}
         >
           <Image
             src="/truck-dirty.png"
-            alt="Truck before professional detailing — dirty and neglected"
+            alt="Truck before professional detailing"
             fill
             priority
             quality={90}
-            className="object-cover object-center sm:object-contain sm:object-bottom"
-            sizes="(max-width: 640px) 180vw, 100vw"
+            className="object-cover object-center"
+            sizes="100vw"
           />
         </div>
 
-        {/* ── Layer 4: Clean truck (scroll wipe) ───────────────────── */}
+        {/* ── Clean truck — scroll wipe ────────────────────────────── */}
         <motion.div
-          className="absolute left-0 right-0 z-[4]
-                     bottom-[158px] h-[78vw]
-                     sm:bottom-[110px] sm:h-[66vh]"
+          className="absolute inset-0 z-[3]"
           style={{ clipPath: cleanClipPath, ...maskStyle }}
         >
           <Image
             src="/truck-clean.png"
-            alt="Truck after Oscar Trucks and Cars Details professional detailing — showroom finish"
+            alt="Truck after professional detailing — showroom finish"
             fill
             priority
             quality={90}
-            className="object-cover object-center sm:object-contain sm:object-bottom"
-            sizes="(max-width: 640px) 180vw, 100vw"
+            className="object-cover object-center"
+            sizes="100vw"
           />
         </motion.div>
 
-        {/* ── Layer 5: Wipe divider ───────────────────────────────── */}
+        {/* ── Wipe divider ─────────────────────────────────────────── */}
         <motion.div
-          className="absolute z-[5] w-px pointer-events-none
-                     bottom-[158px] h-[78vw]
-                     sm:bottom-[110px] sm:h-[66vh]"
+          className="absolute top-0 bottom-0 z-[4] w-px pointer-events-none"
           style={{ left: dividerLeft }}
         >
-          <div className="w-full h-full bg-white/85 shadow-[0_0_16px_4px_rgba(255,255,255,0.45),0_0_40px_8px_rgba(220,38,38,0.25)]" />
+          <div className="w-full h-full bg-white/70 shadow-[0_0_14px_3px_rgba(255,255,255,0.35),0_0_32px_6px_rgba(220,38,38,0.2)]" />
         </motion.div>
 
-        {/* ── Before / After badges ───────────────────────────────── */}
-        <motion.div
-          className="absolute z-[6] left-4 sm:left-10
-                     bottom-[248px] sm:bottom-[200px]"
-          style={{ opacity: beforeOpacity }}
-        >
-          <span className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-white/15 rounded-full px-3 py-1.5 text-white/65 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em]">
-            Before
-          </span>
-        </motion.div>
-        <motion.div
-          className="absolute z-[6] right-4 sm:right-10
-                     bottom-[248px] sm:bottom-[200px]"
-          style={{ opacity: afterOpacity }}
-        >
-          <span className="inline-flex items-center bg-[#DC2626] rounded-full px-3 py-1.5 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] shadow-[0_0_16px_rgba(220,38,38,0.5)]">
-            After
-          </span>
-        </motion.div>
-
-        {/* ── Layer 6: Bottom info strip ──────────────────────────── */}
+        {/* ── Bottom info strip ────────────────────────────────────── */}
         <div
-          className="absolute bottom-0 inset-x-0 z-[7]"
+          className="absolute bottom-0 inset-x-0 z-[5]"
           style={{
             background:
-              "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.95) 60%, transparent 100%)",
-            paddingTop: "60px",
+              "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.95) 55%, transparent 100%)",
+            paddingTop: "80px",
           }}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-10 lg:px-14 pb-6 sm:pb-10">
@@ -256,14 +177,12 @@ export function VideoHero() {
           </div>
         </div>
 
-        {/* ── Scroll hint ─────────────────────────────────────────── */}
+        {/* ── Scroll hint ──────────────────────────────────────────── */}
         <motion.div
-          className="absolute z-[6] inset-x-0 pointer-events-none
-                     top-[34%] sm:top-[38%]
-                     flex flex-col items-center"
+          className="absolute z-[4] inset-x-0 top-[42%] pointer-events-none flex flex-col items-center"
           style={{ opacity: scrollHintOpacity }}
         >
-          <span className="text-white/20 text-[8px] font-bold uppercase tracking-[0.25em]">
+          <span className="text-white/25 text-[8px] font-bold uppercase tracking-[0.25em]">
             Scroll to reveal
           </span>
         </motion.div>
