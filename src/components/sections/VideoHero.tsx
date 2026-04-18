@@ -117,8 +117,8 @@ export function VideoHero() {
           style={maskStyle}
         >
           <Image
-            src="/car-dirty.png"
-            alt="Car before professional detailing — dirty and neglected"
+            src="/truck-dirty.png"
+            alt="Truck before professional detailing — dirty and neglected"
             fill
             priority
             quality={90}
@@ -135,8 +135,8 @@ export function VideoHero() {
           style={{ clipPath: cleanClipPath, ...maskStyle }}
         >
           <Image
-            src="/car-clean.png"
-            alt="Car after Oscar Trucks and Cars Details professional detailing — showroom finish"
+            src="/truck-clean.png"
+            alt="Truck after Oscar Trucks and Cars Details professional detailing — showroom finish"
             fill
             priority
             quality={90}
