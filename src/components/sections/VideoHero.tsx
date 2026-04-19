@@ -10,6 +10,7 @@ export function VideoHero() {
   const containerRef  = useRef<HTMLDivElement>(null);
   const cleanTruckRef = useRef<HTMLDivElement>(null);
   const dividerRef    = useRef<HTMLDivElement>(null);
+  const dragZoneRef   = useRef<HTMLDivElement>(null);
   const animFrameRef  = useRef<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -42,44 +43,45 @@ export function VideoHero() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // All drag logic wired as raw DOM events — immune to React re-renders
+  // Drag listeners attached only to the image zone — bottom strip stays scrollable
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const zone      = dragZoneRef.current;
+    const container = containerRef.current;
+    if (!zone || !container) return;
 
     const getPos = (clientX: number) => {
-      const rect = el.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       return Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
     };
 
     const onDown = (e: PointerEvent) => {
       e.preventDefault();
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-      el.setPointerCapture(e.pointerId);
+      zone.setPointerCapture(e.pointerId);
       applySlider(getPos(e.clientX));
       setHasInteracted(true);
     };
 
     const onMove = (e: PointerEvent) => {
-      if (!el.hasPointerCapture(e.pointerId)) return;
+      if (!zone.hasPointerCapture(e.pointerId)) return;
       e.preventDefault();
       applySlider(getPos(e.clientX));
     };
 
     const onUp = (e: PointerEvent) => {
-      el.releasePointerCapture(e.pointerId);
+      zone.releasePointerCapture(e.pointerId);
     };
 
-    el.addEventListener("pointerdown",   onDown, { passive: false });
-    el.addEventListener("pointermove",   onMove, { passive: false });
-    el.addEventListener("pointerup",     onUp);
-    el.addEventListener("pointercancel", onUp);
+    zone.addEventListener("pointerdown",   onDown, { passive: false });
+    zone.addEventListener("pointermove",   onMove, { passive: false });
+    zone.addEventListener("pointerup",     onUp);
+    zone.addEventListener("pointercancel", onUp);
 
     return () => {
-      el.removeEventListener("pointerdown",   onDown);
-      el.removeEventListener("pointermove",   onMove);
-      el.removeEventListener("pointerup",     onUp);
-      el.removeEventListener("pointercancel", onUp);
+      zone.removeEventListener("pointerdown",   onDown);
+      zone.removeEventListener("pointermove",   onMove);
+      zone.removeEventListener("pointerup",     onUp);
+      zone.removeEventListener("pointercancel", onUp);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -93,7 +95,6 @@ export function VideoHero() {
     <div
       ref={containerRef}
       className="relative h-[100dvh] overflow-hidden bg-[#050505] select-none"
-      style={{ cursor: "col-resize", touchAction: "none" }}
     >
 
       {/* ── Mobile-only background text ─────────────────────────── */}
@@ -140,9 +141,20 @@ export function VideoHero() {
           sizes="(max-width: 640px) 180vw, 100vw" />
       </div>
 
+      {/* ── Drag zone — covers only the image area ───────────── */}
+      <div
+        ref={dragZoneRef}
+        className="absolute left-0 right-0 z-[4]
+                   bottom-[158px] h-[78vw]
+                   sm:top-0 sm:bottom-0 sm:h-auto"
+        style={{ cursor: "col-resize", touchAction: "none" }}
+      />
+
       {/* ── Wipe divider + drag handle (DOM-driven) ──────────── */}
       <div ref={dividerRef}
-           className="absolute top-0 bottom-0 z-[4] w-px pointer-events-none"
+           className="absolute z-[5] w-px pointer-events-none
+                      bottom-[158px] h-[78vw]
+                      sm:top-0 sm:bottom-0 sm:h-auto"
            style={{ left: "100%" }}>
         <div className="w-full h-full bg-white/70 shadow-[0_0_14px_3px_rgba(255,255,255,0.35),0_0_32px_6px_rgba(220,38,38,0.2)]" />
         <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-white shadow-[0_0_24px_rgba(0,0,0,0.6)] flex items-center justify-center">
