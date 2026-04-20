@@ -126,9 +126,9 @@ export function VideoHero() {
       <div className="absolute left-0 right-0 z-[2] bottom-[158px] h-[78vw] sm:top-0 sm:bottom-0 sm:h-auto"
            style={maskStyle}>
         <Image src="/truck-dirty.png" alt="Truck before professional detailing"
-          fill priority quality={90} draggable={false}
+          fill priority quality={95} draggable={false}
           className="object-cover object-center pointer-events-none"
-          sizes="(max-width: 640px) 180vw, 100vw" />
+          sizes="(max-width: 640px) 200vw, 100vw" />
       </div>
 
       {/* ── Clean truck (clipped — DOM-driven) ───────────────── */}
@@ -136,9 +136,9 @@ export function VideoHero() {
            className="absolute left-0 right-0 z-[3] bottom-[158px] h-[78vw] sm:top-0 sm:bottom-0 sm:h-auto"
            style={{ clipPath: "inset(0 100% 0 0)", ...maskStyle }}>
         <Image src="/truck-clean.png" alt="Truck after professional detailing — showroom finish"
-          fill priority quality={90} draggable={false}
+          fill priority quality={95} draggable={false}
           className="object-cover object-center pointer-events-none"
-          sizes="(max-width: 640px) 180vw, 100vw" />
+          sizes="(max-width: 640px) 200vw, 100vw" />
       </div>
 
       {/* ── Drag zone — covers only the image area ───────────── */}
