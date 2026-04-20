@@ -11,8 +11,6 @@ export function VideoHero() {
   const cleanTruckRef   = useRef<HTMLDivElement>(null);
   const dividerRef      = useRef<HTMLDivElement>(null);
   const dragZoneRef     = useRef<HTMLDivElement>(null);
-  const beforeLabelRef  = useRef<HTMLSpanElement>(null);
-  const afterLabelRef   = useRef<HTMLSpanElement>(null);
   const animFrameRef    = useRef<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -22,11 +20,6 @@ export function VideoHero() {
       cleanTruckRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
     if (dividerRef.current)
       dividerRef.current.style.left = `${pct}%`;
-    // Labels fade out when the divider is too close to that edge
-    if (beforeLabelRef.current)
-      beforeLabelRef.current.style.opacity = pct < 14 ? "0" : "1";
-    if (afterLabelRef.current)
-      afterLabelRef.current.style.opacity = pct > 86 ? "0" : "1";
   };
 
   // Intro sweep 100 → 50 to hint the interaction
@@ -169,16 +162,6 @@ export function VideoHero() {
         </div>
       </div>
 
-      {/* ── Before / After labels ─────────────────────────────── */}
-      <div className="absolute z-[4] pointer-events-none flex w-full justify-between px-5 sm:px-14"
-           style={{ top: "clamp(80px, 12vh, 110px)" }}>
-        <span ref={beforeLabelRef}
-              className="text-white/30 text-[9px] font-bold uppercase tracking-[0.2em]"
-              style={{ transition: "opacity 0.25s ease" }}>Before</span>
-        <span ref={afterLabelRef}
-              className="text-white/30 text-[9px] font-bold uppercase tracking-[0.2em]"
-              style={{ transition: "opacity 0.25s ease" }}>After</span>
-      </div>
 
       {/* ── Bottom info strip ────────────────────────────────────── */}
       <div className="absolute bottom-0 inset-x-0 z-[5]"
