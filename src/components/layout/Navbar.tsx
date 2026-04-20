@@ -97,13 +97,25 @@ export function Navbar() {
                 <Phone size={11} />
                 (470) 966-1113
               </a>
-              <Link
-                href="/contact"
-                className="min-h-[36px] pl-5 pr-4 py-1.5 bg-white hover:bg-[#DC2626] text-[#0A0A0A] hover:text-white text-[12px] font-bold rounded-full transition-colors duration-200 flex items-center gap-1 group/btn whitespace-nowrap"
+              <motion.div
+                className="rounded-full"
+                animate={{
+                  boxShadow: [
+                    "0 0 0 0px rgba(255,255,255,0)",
+                    "0 0 0 5px rgba(255,255,255,0.18)",
+                    "0 0 0 10px rgba(255,255,255,0)",
+                  ],
+                }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut", repeatDelay: 1.2 }}
               >
-                Book Now
-                <ArrowUpRight size={12} className="group-hover/btn:rotate-45 transition-transform duration-200" />
-              </Link>
+                <Link
+                  href="/contact"
+                  className="min-h-[36px] pl-5 pr-4 py-1.5 bg-white hover:bg-[#DC2626] text-[#0A0A0A] hover:text-white text-[12px] font-bold rounded-full transition-colors duration-200 flex items-center gap-1 group/btn whitespace-nowrap"
+                >
+                  Book Now
+                  <ArrowUpRight size={12} className="group-hover/btn:rotate-45 transition-transform duration-200" />
+                </Link>
+              </motion.div>
             </div>
 
             {/* Hamburger — mobile only */}
@@ -207,13 +219,25 @@ export function Navbar() {
                   <Phone size={14} />
                   (470) 966-1113
                 </a>
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="min-h-[52px] px-6 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[13px] font-bold rounded-xl flex items-center gap-2 justify-center transition-colors shadow-[0_4px_24px_rgba(220,38,38,0.3)]"
+                <motion.div
+                  className="rounded-xl"
+                  animate={{
+                    boxShadow: [
+                      "0 4px 24px rgba(220,38,38,0.3)",
+                      "0 0 0 5px rgba(220,38,38,0.2)",
+                      "0 0 0 10px rgba(220,38,38,0)",
+                    ],
+                  }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut", repeatDelay: 1.2 }}
                 >
-                  Book your detail <ArrowUpRight size={14} />
-                </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="min-h-[52px] px-6 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[13px] font-bold rounded-xl flex items-center gap-2 justify-center transition-colors"
+                  >
+                    Book your detail <ArrowUpRight size={14} />
+                  </Link>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>

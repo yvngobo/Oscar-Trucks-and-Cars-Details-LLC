@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
+  ChevronDown,
   Droplets,
   Sparkles,
   Shield,
@@ -156,6 +158,8 @@ const cardVariants = {
 ───────────────────────────────────────────── */
 
 export function ServiceGrid() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <div className="space-y-4">
 
@@ -249,92 +253,130 @@ export function ServiceGrid() {
         })}
       </motion.div>
 
+      {/* ── See More toggle ───────────────────────────────────── */}
+      <div className="flex justify-center pt-1">
+        <motion.div
+          className="rounded-full"
+          animate={showMore ? {} : {
+            boxShadow: [
+              "0 0 0 0px rgba(220,38,38,0)",
+              "0 0 0 5px rgba(220,38,38,0.18)",
+              "0 0 0 10px rgba(220,38,38,0)",
+            ],
+          }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut", repeatDelay: 1.2 }}
+        >
+          <button
+            onClick={() => setShowMore((v) => !v)}
+            className="group inline-flex items-center gap-2 min-h-[42px] px-6 rounded-full border border-[var(--card-border)] bg-[var(--card)] hover:border-[#DC2626]/40 hover:bg-[#DC2626]/5 text-[var(--muted-text)] hover:text-[var(--foreground)] text-xs font-semibold transition-all duration-200"
+          >
+            {showMore ? "See less" : "See more services"}
+            <ChevronDown
+              size={14}
+              className={`transition-transform duration-300 ${showMore ? "rotate-180" : ""}`}
+            />
+          </button>
+        </motion.div>
+      </div>
+
       {/* ── Standard 8-card grid ──────────────────────────────── */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.05 }}
-        className="grid grid-cols-2 lg:grid-cols-4 gap-4"
-      >
-        {standardServices.map((service) => {
-          const Icon = service.icon;
-          return (
+      <AnimatePresence initial={false}>
+        {showMore && (
+          <motion.div
+            key="standard-grid"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            style={{ overflow: "hidden" }}
+          >
             <motion.div
-              key={service.id}
-              variants={cardVariants}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="group relative overflow-hidden rounded-[20px] bg-[var(--card)] border border-[var(--card-border)] flex flex-col"
+              variants={containerVariants}
+              initial="hidden"
+              animate="show"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-1"
             >
-              {/* Small image */}
-              <div className="relative h-[100px] sm:h-[120px] overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.alt}
-                  fill
-                  className="object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              </div>
-
-              {/* Body */}
-              <div className="flex flex-col flex-1 p-3.5 sm:p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 bg-[#DC2626]/10 rounded-full flex items-center justify-center shrink-0">
-                    <Icon size={11} className="text-[#DC2626]" />
-                  </div>
-                  <h3 className="text-[var(--foreground)] font-bold text-[13px] sm:text-sm leading-tight tracking-tight">
-                    {service.title}
-                  </h3>
-                </div>
-
-                <p className="text-[var(--muted-text)] text-[11px] sm:text-xs leading-relaxed flex-1 mb-3 line-clamp-3">
-                  {service.desc}
-                </p>
-
-                {/* Price row */}
-                <div className="pt-2.5 border-t border-[var(--card-border)] flex items-center justify-between gap-2">
-                  <div>
-                    {service.prices.length === 1 ? (
-                      <span className="text-[#DC2626] font-black text-sm">
-                        {service.prices[0].value}
-                      </span>
-                    ) : (
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[#DC2626] font-black text-[13px]">
-                          {service.prices[0].value}
-                        </span>
-                        <span className="text-[var(--muted-text)] text-[11px]">/</span>
-                        <span className="text-[#DC2626] font-black text-[13px]">
-                          {service.prices[1].value}
-                        </span>
-                      </div>
-                    )}
-                    {service.prices.length === 2 && (
-                      <p className="text-[var(--muted-text)] text-[10px] leading-none mt-0.5">
-                        sm / SUV
-                      </p>
-                    )}
-                  </div>
-                  <Link
-                    href="/contact"
-                    className="shrink-0 inline-flex items-center gap-1 min-h-[30px] text-[10px] font-bold text-[var(--foreground)] hover:text-[#DC2626] transition-colors duration-150 group/link"
+              {standardServices.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <motion.div
+                    key={service.id}
+                    variants={cardVariants}
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                    className="group relative overflow-hidden rounded-[20px] bg-[var(--card)] border border-[var(--card-border)] flex flex-col"
                   >
-                    Book
-                    <ArrowUpRight
-                      size={11}
-                      className="group-hover/link:rotate-45 transition-transform duration-200"
-                    />
-                  </Link>
-                </div>
-              </div>
+                    {/* Small image */}
+                    <div className="relative h-[100px] sm:h-[120px] overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.alt}
+                        fill
+                        className="object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
+                        loading="lazy"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </div>
+
+                    {/* Body */}
+                    <div className="flex flex-col flex-1 p-3.5 sm:p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 bg-[#DC2626]/10 rounded-full flex items-center justify-center shrink-0">
+                          <Icon size={11} className="text-[#DC2626]" />
+                        </div>
+                        <h3 className="text-[var(--foreground)] font-bold text-[13px] sm:text-sm leading-tight tracking-tight">
+                          {service.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-[var(--muted-text)] text-[11px] sm:text-xs leading-relaxed flex-1 mb-3 line-clamp-3">
+                        {service.desc}
+                      </p>
+
+                      {/* Price row */}
+                      <div className="pt-2.5 border-t border-[var(--card-border)] flex items-center justify-between gap-2">
+                        <div>
+                          {service.prices.length === 1 ? (
+                            <span className="text-[#DC2626] font-black text-sm">
+                              {service.prices[0].value}
+                            </span>
+                          ) : (
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[#DC2626] font-black text-[13px]">
+                                {service.prices[0].value}
+                              </span>
+                              <span className="text-[var(--muted-text)] text-[11px]">/</span>
+                              <span className="text-[#DC2626] font-black text-[13px]">
+                                {service.prices[1].value}
+                              </span>
+                            </div>
+                          )}
+                          {service.prices.length === 2 && (
+                            <p className="text-[var(--muted-text)] text-[10px] leading-none mt-0.5">
+                              sm / SUV
+                            </p>
+                          )}
+                        </div>
+                        <Link
+                          href="/contact"
+                          className="shrink-0 inline-flex items-center gap-1 min-h-[30px] text-[10px] font-bold text-[var(--foreground)] hover:text-[#DC2626] transition-colors duration-150 group/link"
+                        >
+                          Book
+                          <ArrowUpRight
+                            size={11}
+                            className="group-hover/link:rotate-45 transition-transform duration-200"
+                          />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
-          );
-        })}
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Pricing disclaimer ────────────────────────────────── */}
       <div className="mt-2 flex items-start gap-2.5 px-4 py-3 rounded-2xl bg-[var(--muted-bg)] border border-[var(--card-border)]">
