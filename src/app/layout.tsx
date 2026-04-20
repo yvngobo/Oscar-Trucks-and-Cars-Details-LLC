@@ -70,7 +70,7 @@ const jsonLd = {
         "Saturday",
       ],
       opens: "08:00",
-      closes: "18:00",
+      closes: "17:00",
     },
   ],
   aggregateRating: {

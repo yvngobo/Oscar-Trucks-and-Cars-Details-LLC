@@ -119,7 +119,7 @@ export default function ContactPage() {
                         Hours
                       </p>
                       <p className="text-[var(--foreground)] font-bold text-sm">
-                        Mon – Sat: 8am – 6pm
+                        Mon – Sat: 8am – 5pm
                       </p>
                       <p className="text-[var(--muted-text)] text-xs mt-0.5">
                         Sunday: Closed

@@ -38,7 +38,7 @@ export function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
             </span>
             <span className="text-[var(--foreground)] text-xs font-semibold">
-              Booking Now · Mon–Sat 8am–6pm
+              Booking Now · Mon–Sat 8am–5pm
             </span>
           </div>
           <div className="flex items-center gap-2 bg-[var(--card)] border border-[var(--card-border)] rounded-full px-4 py-1.5">
